@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Página simple</title>
+</head>
+<body>
+  <h1>Registro y Login</h1>
+
+  <h2>Registrar</h2>
+  <input id="regUser" placeholder="Usuario">
+  <input id="regPass" type="password" placeholder="Contraseña">
+  <button onclick="registrar()">Registrar</button>
+  <p id="regMsg"></p>
+
+  <h2>Login</h2>
+  <input id="logUser" placeholder="Usuario">
+  <input id="logPass" type="password" placeholder="Contraseña">
+  <button onclick="login()">Entrar</button>
+  <p id="logMsg"></p>
+
+  <h2>Zona privada</h2>
+  <p id="zona">Nadie ha iniciado sesión.</p>
+
+  <script>
+    // Registrar usuario
+    function registrar() {
+      const u = document.getElementById('regUser').value;
+      const p = document.getElementById('regPass').value;
+      if (!u || !p) {
+        document.getElementById('regMsg').textContent = 'Completa ambos campos';
+        return;
+      }
+      localStorage.setItem(u, p); // guarda usuario: contraseña
+      document.getElementById('regMsg').textContent = 'Usuario registrado';
+    }
+
+    // Iniciar sesión
+    function login() {
+      const u = document.getElementById('logUser').value;
+      const p = document.getElementById('logPass').value;
+      const guardado = localStorage.getItem(u);
+      if (guardado === p) {
+        document.getElementById('logMsg').textContent = 'Acceso correcto';
+        document.getElementById('zona').textContent = 'Bienvenido, ' + u;
+      } else {
+        document.getElementById('logMsg').textContent = 'Usuario o contraseña incorrectos';
+      }
+    }
+  </script>
+  <br>
+  <p>en este codigo pruebe esto en login &lt;h1&gt;HOLA&lt;/h1&gt; y vera se muestra como textosimple </p>
+</body>
+</html>

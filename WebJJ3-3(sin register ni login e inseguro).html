@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Página simple</title>
+</head>
+<body>
+  <h1>Registro y Login</h1>
+
+  <h2>Registrar</h2>
+  <input id="regUser" placeholder="Usuario">
+  <input id="regPass" type="password" placeholder="Contraseña">
+  <button onclick="registrar()">Registrar</button>
+  <p id="regMsg"></p>
+
+  <h2>Login</h2>
+  <input id="logUser" placeholder="Usuario">
+  <input id="logPass" type="password" placeholder="Contraseña">
+  <button onclick="login()">Entrar</button>
+  <p id="logMsg"></p>
+
+  <h2>Zona privada</h2>
+  <p id="zona">Nadie ha iniciado sesión.</p>
+
+  <script>
+    // Registrar usuario (sin cambios)
+    function registrar() {
+      const u = document.getElementById('regUser').value;
+      const p = document.getElementById('regPass').value;
+      if (!u || !p) {
+        document.getElementById('regMsg').innerHTML = 'Completa ambos campos';
+        return;
+      }
+      localStorage.setItem(u, p); // guarda usuario: contraseña
+      document.getElementById('regMsg').innerHTML = 'Usuario registrado';
+    }
+
+    // Iniciar sesión (se quitó la verificación contra localStorage)
+    function login() {
+      const u = document.getElementById('logUser').value;
+      const p = document.getElementById('logPass').value;
+
+      // Opcional: evitar campos vacíos
+      if (!u || !p) {
+        document.getElementById('logMsg').innerHTML = 'Completa ambos campos';
+        return;
+      }
+
+      // Ya no se verifica que el usuario esté registrado.
+      // Simplemente se considera "login correcto".
+      document.getElementById('logMsg').innerHTML = 'Acceso correcto';
+      document.getElementById('zona').innerHTML = 'Bienvenido, ' + u;
+    }
+  </script>
+  <br>
+  <p>en este codigo puede poner en login lo que quiera ejm: &lt;h1&gt;HOLA&lt;/h1&gt;</p>
+</body>
+</html>
